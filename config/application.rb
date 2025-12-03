@@ -38,5 +38,20 @@ module Rails8Demo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Configure generators for Inertia + React conventions
+    config.generators do |g|
+      # Skip traditional Rails views since we use Inertia/React
+      g.template_engine false
+      g.helper false
+      g.assets false
+      
+      # Skip test files (uncomment if you want to generate tests)
+      # g.test_framework :rspec
+      g.test_framework false
+      
+      # Use Inertia for scaffold templates
+      g.scaffold_controller :scaffold_controller
+    end
   end
 end

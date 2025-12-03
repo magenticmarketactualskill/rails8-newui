@@ -1,0 +1,26 @@
+import MainLayout from '@/layouts/MainLayout'
+import { Head, Link } from '@inertiajs/react'
+
+interface <%= component_name %>Props {
+  // Add your props here
+}
+
+export default function <%= @action.camelize %>({}: <%= component_name %>Props) {
+  return (
+    <MainLayout>
+      <Head title="<%= class_name %> <%= @action.camelize %>" />
+
+      <div className="mb-6">
+        <Link href="/<%= plural_name %>" className="text-indigo-600 hover:text-indigo-700 font-medium">
+          ← Back to <%= class_name.pluralize %>
+        </Link>
+      </div>
+
+      <h1 className="text-4xl font-bold text-gray-900 mb-8">
+        <%= class_name %> <%= @action.camelize %>
+      </h1>
+
+      {/* Add your component content here */}
+    </MainLayout>
+  )
+}

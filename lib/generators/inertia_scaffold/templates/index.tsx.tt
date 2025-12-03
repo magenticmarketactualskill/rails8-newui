@@ -1,0 +1,60 @@
+import MainLayout from '@/layouts/MainLayout'
+import { Head, Link } from '@inertiajs/react'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Button } from '@/components/ui/button'
+
+interface <%= class_name %> {
+  id: number
+<% attributes.each do |attr| -%>
+  <%= attr.name %>: <%= attr.type == :string ? 'string' : attr.type == :integer ? 'number' : attr.type == :boolean ? 'boolean' : 'any' %>
+<% end -%>
+}
+
+export default function Index({ <%= file_name.pluralize %> }: { <%= file_name.pluralize %>: <%= class_name %>[] }) {
+  return (
+    <MainLayout>
+      <Head title="<%= class_name.pluralize %>" />
+
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-900"><%= class_name.pluralize %></h1>
+        <Link href="/<%= file_name.pluralize %>/new">
+          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+            New <%= class_name %>
+          </Button>
+        </Link>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
+        <Table>
+          <TableHeader className="bg-gray-50">
+            <TableRow>
+              <TableHead>ID</TableHead>
+<% attributes.each do |attr| -%>
+              <TableHead><%= attr.name.titleize %></TableHead>
+<% end -%>
+              <TableHead>Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {<%= file_name.pluralize %>.map((<%= file_name %>) => (
+              <TableRow key={<%= file_name %>.id} className="hover:bg-gray-50">
+                <TableCell>{<%= file_name %>.id}</TableCell>
+<% attributes.each do |attr| -%>
+                <TableCell>{<%= file_name %>.<%= attr.name %>}</TableCell>
+<% end -%>
+                <TableCell>
+                  <Link href={`/<%= file_name.pluralize %>/${<%= file_name %>.id}`} className="text-indigo-600 hover:text-indigo-700 mr-4">
+                    Show
+                  </Link>
+                  <Link href={`/<%= file_name.pluralize %>/${<%= file_name %>.id}/edit`} className="text-indigo-600 hover:text-indigo-700">
+                    Edit
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </MainLayout>
+  )
+}

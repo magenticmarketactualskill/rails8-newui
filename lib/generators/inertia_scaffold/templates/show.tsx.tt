@@ -1,0 +1,60 @@
+import MainLayout from '@/layouts/MainLayout'
+import { Head, Link, router } from '@inertiajs/react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+interface <%= class_name %>Props {
+  <%= file_name %>: {
+    id: number
+<% attributes.each do |attr| -%>
+    <%= attr.name %>: <%= attr.type == :string ? 'string' : attr.type == :integer ? 'number' : attr.type == :boolean ? 'boolean' : 'any' %>
+<% end -%>
+  }
+}
+
+export default function Show({ <%= file_name %> }: <%= class_name %>Props) {
+  const handleDelete = () => {
+    if (confirm('Are you sure you want to delete this <%= file_name %>?')) {
+      router.delete(`/<%= file_name.pluralize %>/${<%= file_name %>.id}`)
+    }
+  }
+
+  return (
+    <MainLayout>
+      <Head title={`<%= class_name %> #${<%= file_name %>.id}`} />
+
+      <div className="mb-6">
+        <Link href="/<%= file_name.pluralize %>" className="text-indigo-600 hover:text-indigo-700 font-medium">
+          ← Back to <%= class_name.pluralize %>
+        </Link>
+      </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle><%= class_name %> #{<%= file_name %>.id}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <dl className="space-y-4">
+<% attributes.each do |attr| -%>
+            <div>
+              <dt className="text-sm font-medium text-gray-500"><%= attr.name.titleize %></dt>
+              <dd className="mt-1 text-sm text-gray-900">{<%= file_name %>.<%= attr.name %>}</dd>
+            </div>
+<% end -%>
+          </dl>
+
+          <div className="mt-6 flex gap-4">
+            <Link href={`/<%= file_name.pluralize %>/${<%= file_name %>.id}/edit`}>
+              <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                Edit
+              </Button>
+            </Link>
+            <Button onClick={handleDelete} variant="destructive">
+              Delete
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </MainLayout>
+  )
+}
