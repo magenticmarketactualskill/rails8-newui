@@ -34,7 +34,7 @@ export default function Index({ product_exports }: { product_exports: ProductExp
                 <span className="text-gray-400">|</span>
                 <Link href="/active_data_flow/data_flows" className="text-indigo-600 hover:text-indigo-700 font-medium">View DataFlow</Link>
                 <span className="text-gray-400">|</span>
-                <Link href="/heartbeat_click" method="post" as="button" className="text-indigo-600 hover:text-indigo-700 font-medium">Trigger Heartbeat</Link>
+                <Link href="/data_flow" className="text-indigo-600 hover:text-indigo-700 font-medium">Trigger Heartbeat</Link>
                 <span className="text-gray-400">|</span>
                 <button onClick={handlePurge} className="text-red-600 hover:text-red-700 font-semibold bg-transparent border-0 p-0 cursor-pointer">
                     🗑️ Purge All
@@ -75,7 +75,7 @@ export default function Index({ product_exports }: { product_exports: ProductExp
                     <p className="text-gray-600 mb-6">
                         Trigger the DataFlow to sync products.
                     </p>
-                    <Link href="/heartbeat_click" method="post" as="button">
+                    <Link href="/data_flow">
                         <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">Trigger Heartbeat</Button>
                     </Link>
                 </div>

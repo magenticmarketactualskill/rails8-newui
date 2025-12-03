@@ -42,7 +42,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <Link href="/heartbeat_click" method="post" as="button">
+                        <Link href="/data_flow">
                             <Button className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white">
                                 <span>Trigger Heartbeat</span>
                                 <span className="text-indigo-200">💓</span>

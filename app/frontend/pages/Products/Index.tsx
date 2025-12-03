@@ -28,7 +28,7 @@ export default function Index({ products }: { products: Product[] }) {
                 <span className="text-gray-400">|</span>
                 <Link href="/active_data_flow/data_flows" className="text-indigo-600 hover:text-indigo-700 font-medium">View DataFlow</Link>
                 <span className="text-gray-400">|</span>
-                <Link href="/heartbeat_click" method="post" as="button" className="text-indigo-600 hover:text-indigo-700 font-medium">Trigger Heartbeat</Link>
+                <Link href="/data_flow" className="text-indigo-600 hover:text-indigo-700 font-medium">Trigger Heartbeat</Link>
             </div>
 
             <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">

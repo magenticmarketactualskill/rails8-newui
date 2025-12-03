@@ -1,7 +1,8 @@
 import MainLayout from '@/layouts/MainLayout'
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, router } from '@inertiajs/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { RefreshCw } from 'lucide-react'
 
 interface HomeProps {
     productCount: number
@@ -12,14 +13,33 @@ interface HomeProps {
 }
 
 export default function Index({ productCount, activeProductCount, inactiveProductCount, exportCount, lastExport }: HomeProps) {
+    const handleReset = () => {
+        if (confirm('Are you sure you want to reset all exports, runs, and cursors? This cannot be undone.')) {
+            router.delete('/reset', {
+                preserveScroll: true,
+            })
+        }
+    }
+
     return (
         <MainLayout>
             <Head title="Home" />
 
             <div className="text-center mb-12">
-                <h1 className="text-5xl font-bold text-gray-900 mb-4">
-                    Rails 8 + Inertia + React
-                </h1>
+                <div className="flex justify-center items-center gap-4 mb-4">
+                    <h1 className="text-5xl font-bold text-gray-900">
+                        Rails 8 + Inertia + React
+                    </h1>
+                    <Button 
+                        onClick={handleReset}
+                        variant="destructive"
+                        size="sm"
+                        className="gap-2"
+                    >
+                        <RefreshCw className="w-4 h-4" />
+                        Reset Demo
+                    </Button>
+                </div>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                     A modern stack demonstration using Rails 8, Inertia.js v2, React, and Shadcn UI.
                 </p>
