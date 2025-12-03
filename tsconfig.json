@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "Node",
+        "jsx": "react-jsx",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "app/frontend/*"
+            ]
+        },
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "app/frontend/**/*"
+    ]
+}

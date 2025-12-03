@@ -1,0 +1,7 @@
+<!-- Page component: <%= page[:component] %> -->
+<!-- Page keys: <%= page.keys.join(', ') %> -->
+<div id="app" data-page='<%= raw page.to_json %>'></div>
+<script>
+  console.log('Page data from attribute:', document.getElementById('app').getAttribute('data-page'));
+  console.log('Parsed:', JSON.parse(document.getElementById('app').getAttribute('data-page')));
+</script>

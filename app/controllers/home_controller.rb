@@ -6,12 +6,19 @@ class HomeController < ApplicationController
   # Displays product and export statistics
   # Requirement 2: View product catalog through web interface
   def index
-    
-    @product_count = Product.count
-    @active_product_count = Product.active.count # Using scope from Requirement 3.1
-    @inactive_product_count = Product.inactive.count # Using scope from Requirement 3.2
-    @export_count = ProductExport.count
-    @last_export = ProductExport.recent_exports.first # Using scope from Requirement 7.1
+    product_count = Product.count
+    active_product_count = Product.active.count # Using scope from Requirement 3.1
+    inactive_product_count = Product.inactive.count # Using scope from Requirement 3.2
+    export_count = ProductExport.count
+    last_export = ProductExport.recent_exports.first # Using scope from Requirement 7.1
+
+    render inertia: 'Home/Index', props: {
+      productCount: product_count,
+      activeProductCount: active_product_count,
+      inactiveProductCount: inactive_product_count,
+      exportCount: export_count,
+      lastExport: last_export
+    }
   end
 
   # DELETE /reset
