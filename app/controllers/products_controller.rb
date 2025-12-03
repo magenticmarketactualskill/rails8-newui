@@ -2,16 +2,12 @@
 
 class ProductsController < ApplicationController
   def index
-    @products = Product.order(id: :asc)
-    render inertia: 'Products/Index', props: {
-      products: @products.as_json(only: [:id, :sku, :name, :price, :category, :active])
-    }
+    @products = Product.order(id: :asc).as_json(only: [:id, :sku, :name, :price, :category, :active])
+    render inertia: true
   end
 
   def show
-    @product = Product.find(params[:id])
-    render inertia: 'Products/Show', props: {
-      product: @product.as_json(only: [:id, :sku, :name, :price, :category, :active])
-    }
+    @product = Product.find(params[:id]).as_json(only: [:id, :sku, :name, :price, :category, :active])
+    render inertia: true
   end
 end

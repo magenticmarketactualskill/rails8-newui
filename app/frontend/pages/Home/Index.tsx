@@ -5,14 +5,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { RefreshCw } from 'lucide-react'
 
 interface HomeProps {
-    productCount: number
-    activeProductCount: number
-    inactiveProductCount: number
-    exportCount: number
-    lastExport: any
+    product_count: number
+    active_product_count: number
+    inactive_product_count: number
+    export_count: number
+    last_export: any
 }
 
-export default function Index({ productCount, activeProductCount, inactiveProductCount, exportCount, lastExport }: HomeProps) {
+export default function Index({ product_count, active_product_count, inactive_product_count, export_count, last_export }: HomeProps) {
     const handleReset = () => {
         if (confirm('Are you sure you want to reset all exports, runs, and cursors? This cannot be undone.')) {
             router.delete('/reset', {
@@ -59,15 +59,15 @@ export default function Index({ productCount, activeProductCount, inactiveProduc
                         <div className="mb-4 space-y-2">
                             <div className="flex justify-between text-sm">
                                 <span className="text-gray-500">Total Products:</span>
-                                <span className="font-medium">{productCount}</span>
+                                <span className="font-medium">{product_count}</span>
                             </div>
                             <div className="flex justify-between text-sm">
                                 <span className="text-gray-500">Active:</span>
-                                <span className="font-medium text-green-600">{activeProductCount}</span>
+                                <span className="font-medium text-green-600">{active_product_count}</span>
                             </div>
                             <div className="flex justify-between text-sm">
                                 <span className="text-gray-500">Inactive:</span>
-                                <span className="font-medium text-gray-600">{inactiveProductCount}</span>
+                                <span className="font-medium text-gray-600">{inactive_product_count}</span>
                             </div>
                         </div>
                         <Link href="/products">
@@ -91,12 +91,12 @@ export default function Index({ productCount, activeProductCount, inactiveProduc
                         <div className="mb-4 space-y-2">
                             <div className="flex justify-between text-sm">
                                 <span className="text-gray-500">Total Exports:</span>
-                                <span className="font-medium">{exportCount}</span>
+                                <span className="font-medium">{export_count}</span>
                             </div>
-                            {lastExport && (
+                            {last_export && (
                                 <div className="flex justify-between text-sm">
                                     <span className="text-gray-500">Last Export:</span>
-                                    <span className="font-medium">{new Date(lastExport.exported_at).toLocaleDateString()}</span>
+                                    <span className="font-medium">{new Date(last_export.exported_at).toLocaleDateString()}</span>
                                 </div>
                             )}
                         </div>

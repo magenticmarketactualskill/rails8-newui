@@ -1,11 +1,9 @@
 module ActiveDataFlow 
     class DataFlowsController < ApplicationController
         def index
-            @data_flows = ActiveDataFlow::DataFlow.all
+            @data_flows = ActiveDataFlow::DataFlow.all.as_json
             Rails.logger.info "[DataFlowsController#index] Loaded #{@data_flows.count} data flows"
-            render inertia: 'DataFlows/Index', props: {
-                data_flows: @data_flows.as_json
-            }
+            render inertia: true
         end
         
         def show
